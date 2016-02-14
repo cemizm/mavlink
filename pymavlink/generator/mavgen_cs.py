@@ -73,7 +73,7 @@ def generate_enums(outf, enums):
     for e in enums:
             #if len(e.description) > 0:
         generate_xmlDocSummary(outf, e.description, 1)
-        outf.write("\tpublic enum %s : ushort\n\t{\n" % e.name)
+        outf.write("\tpublic enum %s : uint\n\t{\n" % e.name)
 
         for entry in e.entry:
             if len(entry.description) > 0:
@@ -295,17 +295,17 @@ def generate(basename, xml):
     outf = open(structsfilename, "w")
     generate_preamble(outf, msgs, filelist, xml[0])
     
-    outf.write("""
-    
-using System.Reflection;    
-    
-[assembly: AssemblyTitle("Mavlink Classes")]
-[assembly: AssemblyDescription("Generated Message Classes for Mavlink. See http://qgroundcontrol.org/mavlink/start")]
-[assembly: AssemblyProduct("Mavlink")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
-
-    """)
+##    outf.write("""
+##    
+##using System.Reflection;    
+##    
+##[assembly: AssemblyTitle("Mavlink Classes")]
+##[assembly: AssemblyDescription("Generated Message Classes for Mavlink. See http://qgroundcontrol.org/mavlink/start")]
+##[assembly: AssemblyProduct("Mavlink")]
+##[assembly: AssemblyVersion("1.0.0.0")]
+##[assembly: AssemblyFileVersion("1.0.0.0")]
+##
+##    """)
     
     generate_enums(outf, enums)
     generate_classes(outf, msgs)
@@ -341,9 +341,9 @@ using System.Reflection;
         compileCommand = compileCommand + " " + os.path.normpath(csFile)
     
     #print("Cmd:" + compileCommand)
-    res = os.system (compileCommand)
+    #res = os.system (compileCommand)
     
-    if res == '0':
-        print("Generated %s OK" % filename)
-    else:
-        print("Error")
+    #if res == '0':
+    #    print("Generated %s OK" % filename)
+    #else:
+    #    print("Error")
